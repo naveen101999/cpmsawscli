@@ -29,7 +29,7 @@ pipeline{
                }
            sh "aws elbv2 create-listener --load-balancer-arn ${jsonitem1['LoadBalancers'][0]['LoadBalancerArn']} --protocol HTTP --port 80 --default-actions Type=forward,TargetGroupArn=${jsonitem2['TargetGroups'][0]['TargetGroupArn']} --region us-east-1"
            sh "aws autoscaling create-launch-configuration --launch-configuration-name my-lc3-cli --image-id ami-04505e74c0741db8d --instance-type t2.micro --security-groups sg-0b947349537e69ed2 --key-name Naveen06training --iam-instance-profile demo-Role --user-data file://userdata.txt --region us-east-1"
-           sh "aws autoscaling create-auto-scaling-group --auto-scaling-group-name my-asg3-cli --launch-configuration-name my-lc3-cli --max-size 2 --min-size 1 --desired-capacity 1 --target-group-arns ${jsonitem2['TargetGroups'][0]['TargetGroupArn']} --availability-zones us-east-1c --region us-east-1"
+           sh "aws autoscaling create-auto-scaling-group --auto-scaling-group-name my-asg3-cli --launch-configuration-name my-lc3-cli --max-size 2 --min-size 1 --desired-capacity 1 --target-group-arns ${jsonitem2['TargetGroups'][0]['TargetGroupArn']} --availability-zones us-east-1d --region us-east-1"
         }
        }
   }
